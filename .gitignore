@@ -7,3 +7,11 @@ data/
 
 noteb_APIkey.txt
 *.pdf
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
