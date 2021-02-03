@@ -38,4 +38,4 @@ def get_model_page(model_id):
     return render_template("model.html", model_name=name, img1=resrcs["image_1"], img2=resrcs["image_2"], img3=resrcs["image_3"], official_link=resrcs["official_link"])
 
 if __name__ == "__main__":
-app.run(debug=True)
+    app.run(debug=True)
