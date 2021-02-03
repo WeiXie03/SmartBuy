@@ -4,15 +4,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Wei">
-    <title>JSON Example</title>
+    <title>SmartBuy Laptops</title>
+
+    <!-- for 404 favicon.ico error -->
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
-    <div id="result"></div>
+    <p><em>note</em>: All data shown below are of each model's best-value (best performance per price) configuration. To customize laptop models, go to the model's individual page.</p>
+    <table id="models" class="display">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>CPU</th>
+                <th>Cores</th>
+                <th>Memory(GB)</th>
+                <th>GPU</th>
+                <th>Screen</th>
+                <th>Storage(GB)</th>
+            <!--
+                <th>HDD(GB)</th>
+                <th>SSD(GB)</th>
+            -->
+                <th>Year</th>
+                <th>Price($)</th>
+                <th>OS</th>
+            </tr>
+        </thead>
+    </table>
+         
 <!-- jQuery -->
 <script
   src="https://code.jquery.com/jquery-3.5.1.js"
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
 <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

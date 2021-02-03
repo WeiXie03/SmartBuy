@@ -57,12 +57,32 @@ def list_to_full_db(sav_path, src_path, noteb_url, req_data, max_models=10):
         json.dump(full_data, savef)
     print("saved to file ", sav_path)
 
+def DT_reformat_data(sav_path, src_path, max_models=10):
+    """ fit full data to jQuery DataTables' requirement, using DataTables for browsing, searching, filtering on main page
+    """
+    with open(src_path, "r") as srcf:
+        src_data = json.load(srcf)
+
+        # jQuery DataTables (library) requires everything to be in array mapped from "data"
+        reformed_data = {"data": []}
+        # limit to max_models
+        for model_num in range(max_models):
+            #print(model_num)
+            #print(src_data[str(model_num)])
+            # just throw original data in except without all the model numbers
+            reformed_data["data"].append(src_data[str(model_num)]['0'])
+
+    # save new, reformatted data to separate new file
+    with open(sav_path, "w") as savef:
+        json.dump(reformed_data, savef)
+    print("saved to file ", sav_path)
+
 if __name__ == "__main__":
     NOTEB_URL = "https://noteb.com/api/webservice.php"
     API_KEY = "112233aabbcc"
     # first had list_models data
-    INTER_DATAF_PATH = os.path.join("../data/data.json")
-    DATAF_PATH = os.path.join("../data/full_data.json")
+    INTER_DATAF_PATH = os.path.join("data","full_data.json")
+    DATAF_PATH = os.path.join("data","DT_data.json")
 
     # POST HTTP request to get model info with filtering, must be in "form-data form"
     req_data = {
@@ -79,4 +99,4 @@ if __name__ == "__main__":
     '''
 
     #savef_list_info(req, DATF_PATH)
-    list_to_full_db(DATAF_PATH, INTER_DATAF_PATH, NOTEB_URL, req_data)
+    DT_reformat_data(DATAF_PATH, INTER_DATAF_PATH)
