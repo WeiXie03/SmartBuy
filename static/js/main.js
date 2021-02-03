@@ -27,7 +27,15 @@ $(document).ready(function() {
             {"data": "operating_system" }
         ]
     });
+    $("#models").on("click", "tbody tr", function() {
+        link = `/models/${table.row(this).data()['model_info'][0]['id']}`
+        // console.log(link);
+        console.log(table.row(this).data()['model_info'][0]['id']);
+        window.location.href = link;
+    } );
+    $('tbody tr').css('cursor','pointer');
 })
+
     /*
     let url = "/models"
     let table = $("#models").DataTable( {

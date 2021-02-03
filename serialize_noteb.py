@@ -68,9 +68,10 @@ def DT_reformat_data(sav_path, src_path, max_models=10):
         # limit to max_models
         for model_num in range(max_models):
             #print(model_num)
-            #print(src_data[str(model_num)])
+            print(src_data[str(model_num)].keys())
             # just throw original data in except without all the model numbers
-            reformed_data["data"].append(src_data[str(model_num)]['0'])
+            temp_i = next(iter(src_data[str(model_num)]))
+            reformed_data["data"].append(src_data[str(model_num)][temp_i])
 
     # save new, reformatted data to separate new file
     with open(sav_path, "w") as savef:
@@ -79,10 +80,13 @@ def DT_reformat_data(sav_path, src_path, max_models=10):
 
 if __name__ == "__main__":
     NOTEB_URL = "https://noteb.com/api/webservice.php"
-    API_KEY = "112233aabbcc"
+    API_KEY = "Y6LwWU2Zxi9Ux5K"
     # first had list_models data
     INTER_DATAF_PATH = os.path.join("data","full_data.json")
     DATAF_PATH = os.path.join("data","DT_data.json")
+    # first stage \/
+    #INTER_DATAF_PATH = os.path.join("data","data.json")
+    #DATAF_PATH = os.path.join("data","full_data.json")
 
     # POST HTTP request to get model info with filtering, must be in "form-data form"
     req_data = {
@@ -98,5 +102,6 @@ if __name__ == "__main__":
         req_data["param[model_id]"] = m_id
     '''
 
-    #savef_list_info(req, DATF_PATH)
-    DT_reformat_data(DATAF_PATH, INTER_DATAF_PATH)
+    #savef_list_info(req_data, DATF_PATH, 30)
+    #list_to_full_db(DATAF_PATH, INTER_DATAF_PATH, NOTEB_URL, req_data, 30)
+    DT_reformat_data(DATAF_PATH, INTER_DATAF_PATH, 30)
