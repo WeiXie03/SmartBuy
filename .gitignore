@@ -8,6 +8,7 @@ data/
 noteb_APIkey.txt
 *.pdf
 *.mkv
+Demo/
 
 .pytest_cache/
 .coverage
