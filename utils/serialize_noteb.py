@@ -80,17 +80,21 @@ def DT_reformat_data(sav_path, src_path, max_models=10):
 
 if __name__ == "__main__":
     NOTEB_URL = "https://noteb.com/api/webservice.php"
-    API_KEY = "Y6LwWU2Zxi9Ux5K"
+    API_KEY_PATH = os.path.join("..", "noteb_APIkey.txt")
+    with open (API_KEY_PATH, 'r') as apikey_f:
+        api_key = apikey_f.read()
+
+    # TODO: command line args
     # first had list_models data
-    INTER_DATAF_PATH = os.path.join("data","full_data.json")
-    DATAF_PATH = os.path.join("data","DT_data.json")
+    INTER_DATAF_PATH = os.path.join("..", "data","full_data.json")
+    DATAF_PATH = os.path.join("..", "data","DT_data.json")
     # first stage \/
     #INTER_DATAF_PATH = os.path.join("data","data.json")
     #DATAF_PATH = os.path.join("data","full_data.json")
 
     # POST HTTP request to get model info with filtering, must be in "form-data form"
     req_data = {
-        "apikey": API_KEY,
+        "apikey": api_key,
         "method": "",
         "param[model_id]": "",
         "param[model_name]": ""
